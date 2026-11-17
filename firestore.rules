@@ -1,0 +1,48 @@
+rules_version = '2';
+
+service cloud.firestore {
+  match /databases/{database}/documents {
+    function signedIn() {
+      return request.auth != null;
+    }
+
+    function isAdmin() {
+      return signedIn() && request.auth.token.admin == true;
+    }
+
+    match /students/{studentId} {
+      allow read: if isAdmin() || (signedIn() && request.auth.uid == studentId);
+      allow write: if isAdmin();
+    }
+
+    match /examSettings/{settingId} {
+      allow read: if signedIn();
+      allow write: if isAdmin();
+    }
+
+    // Question documents include answer keys. Students must never read them directly.
+    match /questions/{questionId} {
+      allow read, write: if isAdmin();
+    }
+
+    match /attempts/{attemptId} {
+      // Module 2 uses protected Next.js Route Handlers for attempt access.
+      allow read, write: if isAdmin();
+    }
+
+    match /violations/{violationId} {
+      allow read: if isAdmin();
+      // Monitoring events are written by the protected server route.
+      allow create, update, delete: if isAdmin();
+    }
+
+    match /results/{studentId} {
+      allow read: if isAdmin() || (signedIn() && request.auth.uid == studentId);
+      allow write: if isAdmin();
+    }
+
+    match /{document=**} {
+      allow read, write: if false;
+    }
+  }
+}

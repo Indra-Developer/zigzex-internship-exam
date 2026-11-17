@@ -1,69 +1,36 @@
-import Image from "next/image";
+import Link from "next/link";
 
 export default function Home() {
   return (
-    <div className="flex flex-col flex-1 items-center justify-center bg-zinc-50 font-sans dark:bg-black">
-      <main className="flex flex-1 w-full max-w-3xl flex-col items-center justify-between py-32 px-16 bg-white dark:bg-black sm:items-start">
-        <Image
-          className="dark:invert h-5 w-[100px]"
-          src="/next.svg"
-          alt="Next.js logo"
-          width={100}
-          height={20}
-          priority
-        />
-        <div className="flex flex-col items-center gap-6 text-center sm:items-start sm:text-left">
-          <h1 className="max-w-xs text-3xl font-semibold leading-10 tracking-tight text-black dark:text-zinc-50">
-            To get started, edit the{" "}
-            <code className="rounded bg-black/[.06] px-1.5 py-0.5 font-mono text-[0.9em] dark:bg-white/[.08]">
-              page.tsx
-            </code>{" "}
-            file.
-          </h1>
-          <p className="max-w-md text-lg leading-8 text-zinc-600 dark:text-zinc-400">
-            Looking for a starting point or more instructions? Head over to{" "}
-            <a
-              href="https://vercel.com/templates?framework=next.js&utm_source=create-next-app&utm_medium=appdir-template-tw&utm_campaign=create-next-app"
-              className="font-medium text-zinc-950 dark:text-zinc-50"
-            >
-              Templates
-            </a>{" "}
-            or the{" "}
-            <a
-              href="https://nextjs.org/learn?utm_source=create-next-app&utm_medium=appdir-template-tw&utm_campaign=create-next-app"
-              className="font-medium text-zinc-950 dark:text-zinc-50"
-            >
-              Learning
-            </a>{" "}
-            center.
-          </p>
+    <main className="min-h-screen bg-white">
+      <header className="border-b border-slate-100">
+        <div className="mx-auto flex max-w-6xl items-center justify-between px-6 py-5">
+          <Link href="/" className="flex items-center gap-3">
+            <span className="flex h-10 w-10 items-center justify-center rounded-xl bg-blue-600 text-lg font-black text-white">Z</span>
+            <span><span className="block text-sm font-black tracking-[0.25em] text-slate-900">ZIGZEX</span><span className="block text-xs text-slate-500">IT Services Private Limited</span></span>
+          </Link>
+          <div className="flex items-center gap-2"><Link href="/student/login" className="rounded-xl bg-blue-600 px-4 py-2.5 text-sm font-semibold text-white transition hover:bg-blue-700">Student login</Link><Link href="/admin/login" className="rounded-xl border border-slate-200 px-4 py-2.5 text-sm font-semibold text-slate-700 transition hover:border-blue-300 hover:text-blue-700">Admin sign in</Link></div>
         </div>
-        <div className="flex flex-col gap-4 text-base font-medium sm:flex-row">
-          <a
-            className="flex h-12 w-full items-center justify-center gap-2 rounded-full bg-foreground px-5 text-background transition-colors hover:bg-[#383838] dark:hover:bg-[#ccc] md:w-[158px]"
-            href="https://vercel.com/new?utm_source=create-next-app&utm_medium=appdir-template-tw&utm_campaign=create-next-app"
-            target="_blank"
-            rel="noopener noreferrer"
-          >
-            <Image
-              className="dark:invert h-[14px] w-4"
-              src="/vercel.svg"
-              alt="Vercel logomark"
-              width={16}
-              height={14}
-            />
-            Deploy Now
-          </a>
-          <a
-            className="flex h-12 w-full items-center justify-center rounded-full border border-solid border-black/[.08] px-5 transition-colors hover:border-transparent hover:bg-black/[.04] dark:border-white/[.145] dark:hover:bg-[#1a1a1a] md:w-[158px]"
-            href="https://nextjs.org/docs?utm_source=create-next-app&utm_medium=appdir-template-tw&utm_campaign=create-next-app"
-            target="_blank"
-            rel="noopener noreferrer"
-          >
-            Documentation
-          </a>
+      </header>
+      <section className="mx-auto grid max-w-6xl gap-12 px-6 py-20 lg:grid-cols-[1.1fr_0.9fr] lg:items-center">
+        <div>
+          <p className="text-sm font-semibold uppercase tracking-[0.25em] text-blue-700">Internship entrance examination</p>
+          <h1 className="mt-5 max-w-3xl text-5xl font-bold leading-[1.08] tracking-tight text-slate-950 sm:text-6xl">A structured assessment for emerging technology talent.</h1>
+          <p className="mt-6 max-w-2xl text-lg leading-8 text-slate-600">ZIGZEX provides a secure and focused examination experience for internship applicants.</p>
+          <div className="mt-9 flex flex-wrap gap-3"><Link href="/student/login" className="rounded-xl bg-blue-600 px-5 py-3 font-semibold text-white transition hover:bg-blue-700">Student exam login</Link><Link href="/admin/login" className="rounded-xl border border-slate-200 px-5 py-3 font-semibold text-slate-700 transition hover:border-blue-300 hover:text-blue-700">Open admin console</Link></div>
         </div>
-      </main>
-    </div>
+        <div className="rounded-3xl bg-slate-950 p-7 text-white shadow-2xl shadow-blue-950/10">
+          <p className="text-sm font-semibold uppercase tracking-[0.2em] text-blue-300">Assessment structure</p>
+          <p className="mt-5 text-4xl font-bold">Clear. Focused. Fair.</p>
+          <p className="mt-4 max-w-sm leading-7 text-slate-300">A consistent examination format supports a reliable internship selection process.</p>
+          <div className="mt-10 grid grid-cols-3 gap-3 border-t border-white/10 pt-5 text-sm"><div><p className="text-2xl font-bold">50</p><p className="mt-1 text-slate-400">Questions</p></div><div><p className="text-2xl font-bold">100</p><p className="mt-1 text-slate-400">Marks</p></div><div><p className="text-2xl font-bold">1</p><p className="mt-1 text-slate-400">Attempt</p></div></div>
+        </div>
+      </section>
+      <section className="mx-auto grid max-w-6xl gap-4 px-6 pb-20 sm:grid-cols-3">
+        <div className="rounded-2xl border border-slate-200 p-6"><p className="text-sm font-semibold text-blue-700">01</p><h2 className="mt-4 font-bold text-slate-950">Controlled access</h2><p className="mt-2 text-sm leading-6 text-slate-500">Candidate access and examination settings are managed through a protected administration console.</p></div>
+        <div className="rounded-2xl border border-slate-200 p-6"><p className="text-sm font-semibold text-blue-700">02</p><h2 className="mt-4 font-bold text-slate-950">Structured assessment</h2><p className="mt-2 text-sm leading-6 text-slate-500">A balanced multiple-choice format evaluates technical, aptitude and programming logic skills.</p></div>
+        <div className="rounded-2xl border border-slate-200 p-6"><p className="text-sm font-semibold text-blue-700">03</p><h2 className="mt-4 font-bold text-slate-950">Secure administration</h2><p className="mt-2 text-sm leading-6 text-slate-500">Authentication, examination records and evaluation data are managed in one secure workflow.</p></div>
+      </section>
+    </main>
   );
 }
