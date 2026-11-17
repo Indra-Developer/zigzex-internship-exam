@@ -4,6 +4,11 @@ import "./globals.css";
 export const metadata: Metadata = {
   title: "ZIGZEX Internship Examination",
   description: "Lightweight internship entrance examination platform for ZIGZEX IT Services Private Limited.",
+  icons: {
+    icon: "/zigzex-favicon.png",
+    shortcut: "/zigzex-favicon.png",
+    apple: "/zigzex-favicon.png",
+  },
 };
 
 export default function RootLayout({ children }: LayoutProps<"/">) {

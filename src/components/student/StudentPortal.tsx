@@ -4,6 +4,7 @@
 /* eslint-disable @next/next/no-img-element */
 
 import { useCallback, useEffect, useRef, useState } from "react";
+import Image from "next/image";
 import type { ExamLanguage, StudentAttempt, StudentMe } from "@/types/exam";
 import type { StudentResult } from "@/types/result";
 import { ExamInterface } from "@/components/student/ExamInterface";
@@ -22,7 +23,7 @@ async function readJson<T>(url: string, options?: RequestInit) {
 }
 
 function StudentHeader({ name, email }: { name: string; email: string }) {
-  return <header className="border-b border-slate-200 bg-white"><div className="mx-auto flex max-w-7xl items-center justify-between px-6 py-4"><div className="flex items-center gap-3"><span className="flex h-10 w-10 items-center justify-center rounded-xl bg-blue-600 text-lg font-black text-white">Z</span><span><span className="block text-sm font-black tracking-[0.25em] text-slate-900">ZIGZEX</span><span className="block text-xs text-slate-500">Internship Examination</span></span></div><div className="flex items-center gap-4"><div className="hidden text-right sm:block"><p className="text-sm font-semibold text-slate-800">{name}</p><p className="text-xs text-slate-500">{email}</p></div><StudentSignOutButton /></div></div></header>;
+  return <header className="border-b border-slate-200 bg-white"><div className="mx-auto flex max-w-7xl items-center justify-between px-6 py-4"><div className="flex items-center gap-3"><Image src="/zigzex-logo.png" alt="ZIGZEX IT Services Private Limited" width={260} height={108} priority className="h-10 w-auto object-contain" /><span className="sr-only">Internship Examination</span></div><div className="flex items-center gap-4"><div className="hidden text-right sm:block"><p className="text-sm font-semibold text-slate-800">{name}</p><p className="text-xs text-slate-500">{email}</p></div><StudentSignOutButton /></div></div></header>;
 }
 
 export function StudentPortal() {

@@ -1,4 +1,5 @@
 import Link from "next/link";
+import Image from "next/image";
 
 export default function Home() {
   return (
@@ -6,8 +7,7 @@ export default function Home() {
       <header className="border-b border-slate-100">
         <div className="mx-auto flex max-w-6xl items-center justify-between px-6 py-5">
           <Link href="/" className="flex items-center gap-3">
-            <span className="flex h-10 w-10 items-center justify-center rounded-xl bg-blue-600 text-lg font-black text-white">Z</span>
-            <span><span className="block text-sm font-black tracking-[0.25em] text-slate-900">ZIGZEX</span><span className="block text-xs text-slate-500">IT Services Private Limited</span></span>
+            <Image src="/zigzex-logo.png" alt="ZIGZEX IT Services Private Limited" width={260} height={108} priority className="h-12 w-auto object-contain" />
           </Link>
           <div className="flex items-center gap-2"><Link href="/student/login" className="rounded-xl bg-blue-600 px-4 py-2.5 text-sm font-semibold text-white transition hover:bg-blue-700">Student login</Link><Link href="/admin/login" className="rounded-xl border border-slate-200 px-4 py-2.5 text-sm font-semibold text-slate-700 transition hover:border-blue-300 hover:text-blue-700">Admin sign in</Link></div>
         </div>
