@@ -8,6 +8,18 @@ import { useRouter } from "next/navigation";
 import { getFirebaseClientAuth } from "@/lib/firebase/client";
 import { PasswordInput } from "@/components/common/PasswordInput";
 
+async function getSessionError(response: Response, fallback: string) {
+  const responseText = await response.text();
+  if (!responseText) return `${fallback} (server returned HTTP ${response.status}).`;
+
+  try {
+    const data = JSON.parse(responseText) as { error?: string };
+    return data.error || `${fallback} (server returned HTTP ${response.status}).`;
+  } catch {
+    return `${fallback} (server returned an invalid response, HTTP ${response.status}).`;
+  }
+}
+
 export default function AdminLoginPage() {
   const router = useRouter();
   const [email, setEmail] = useState("");
@@ -21,8 +33,7 @@ export default function AdminLoginPage() {
       const credentials = await signInWithEmailAndPassword(getFirebaseClientAuth(), email, password);
       const idToken = await credentials.user.getIdToken();
       const response = await fetch("/api/auth/admin/session", { method: "POST", headers: { "content-type": "application/json" }, body: JSON.stringify({ idToken }) });
-      const data = (await response.json()) as { error?: string };
-      if (!response.ok) throw new Error(data.error || "Unable to create administrator session.");
+      if (!response.ok) throw new Error(await getSessionError(response, "Unable to create administrator session."));
       router.replace("/admin"); router.refresh();
     } catch (caught) {
       const message = caught instanceof Error ? caught.message : "Unable to sign in.";
